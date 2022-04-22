@@ -66,7 +66,7 @@ class Perro {
                 this.pasear = false;
                 document.getElementById("imagen__perrito").setAttribute("src", "./src/perro/parado.png");
             }
-        }, 100); 
+        }, 500); 
         
     }
     salirPasear() {
