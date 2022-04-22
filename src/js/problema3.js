@@ -12,13 +12,15 @@ class Perro {
         this.spriteCaminando = ["./src/perro/caminar1.png", "./src/perro/caminar2.png", "./src/perro/caminar3.png", "./src/perro/caminar4.png", "./src/perro/caminar5.png"];
     }
     sentarse() {
-        if (!this.sentado) {
+        if (!this.sentado && !this.pasear) {
             this.sentado = true;
             this.distraido = false;
             alert(`El ${this.nombre} se sentó`);
             document.getElementById("imagen__perrito").setAttribute("src", "./src/perro/sentado.png");
             this.distraerse();
-        } else {
+        } else if (this.pasear) {
+            alert("Está paseando, debes decirle quieto para que pueda sentarse")
+        } else if (this.sentado) {
             alert("Ya está sentado");
         }
     }
@@ -57,17 +59,17 @@ class Perro {
         window.setTimeout(() => {
             document.getElementById("imagen__perrito").setAttribute("src", this.spriteCaminando[index]);
             index++;
-            if(index == 5){
+            if (index == 5) {
                 index = 0;
             }
-            if (!this.quieto){
+            if (!this.quieto) {
                 this.pasearTRESMIl(index);
-            }else{
+            } else {
                 this.pasear = false;
                 document.getElementById("imagen__perrito").setAttribute("src", "./src/perro/parado.png");
             }
-        }, 500); 
-        
+        }, 500);
+
     }
     salirPasear() {
         if (this.correaPuesta) {
@@ -75,7 +77,7 @@ class Perro {
             this.quieto = false;
             this.pasear = true;
             alert("Vamos a pasear");
-            this.pasearTRESMIl(0);           
+            this.pasearTRESMIl(0);
         } else {
             alert("Primero debes ponerle la correa")
         }
